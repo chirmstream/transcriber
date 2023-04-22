@@ -7,14 +7,47 @@ Transcriber is a web application that allows a user to upload an audio clip, and
 - Return copy-pastable text
 - Highlight text during audio playback
 - Downloadable transcription
+
 ## Requirements
 ---
 - Flask framework
 - sqlite3 database?
 
-
 ## Installation Guide
 ---
+Create a virtual Python enviroment (Linux/MacOS command):
+
+    mkdir transcriber
+    cd transcriber
+    python3 -m venv venv
+
+Activate the Python virtual enviroment
+
+    . venv/bin/activate
+
+Install Transcriber project using pip
+
+    pip install -e .
+
+Initiate the project database
+
+    flask --app flaskr init-db
+
+Start Flask development server
+
+    flask --app flaskr run --debug
+
+## Other notes:
+---
+If you need to restart the development server after installation simply reactivate the virtual python enviroment and restart the server
+
+    . venv/bin/activate
+    flask --app flaskr run --debug
+
+If the default port 5000 is in use run:
+
+    flask --app flaskr run --debug -p <port>
+
 Flask Extensions to use:
 - Flask-SQLAlchemy
 - Flask-WTF?
@@ -28,7 +61,7 @@ Flask Extensions to use:
 
 ### License
 ---
-<small>
+<sup>
 MIT License
 
 Copyright (c) 2023 chirmstream
@@ -50,4 +83,4 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-</small>
+</sup>
