@@ -103,4 +103,4 @@ def delete(id):
 
 @bp.route('/transcriber')
 def transcriber():
-    return 'Hello, test page!'
+    return render_template('transcriber/transcriber.html')
