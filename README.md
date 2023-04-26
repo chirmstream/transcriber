@@ -31,22 +31,22 @@ Install Transcriber project using pip
 
 Initiate the project database
 
-    flask --app flaskr init-db
+    flask --app transcriber init-db
 
 Start Flask development server
 
-    flask --app flaskr run --debug
+    flask --app transcriber run --debug
 
 ## Other notes:
 ---
 If you need to restart the development server after installation simply reactivate the virtual python enviroment and restart the server
 
     . venv/bin/activate
-    flask --app flaskr run --debug
+    flask --app transcriber run --debug
 
 If the default port 5000 is in use run:
 
-    flask --app flaskr run --debug -p <port>
+    flask --app transcriber run --debug -p <port>
 
 Flask Extensions to use:
 - Flask-SQLAlchemy
