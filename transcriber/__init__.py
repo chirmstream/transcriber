@@ -31,10 +31,11 @@ def create_app(test_config=None):
     from . import auth
     app.register_blueprint(auth.bp)
 
+    from . import upload
+    app.register_blueprint(upload.bp)
+
     from . import transcriber
     app.register_blueprint(transcriber.bp)
     app.add_url_rule('/', endpoint='index')
-    #app.config['UPLOAD_FOLDER'] = 'instance/UPLOAD_FOLDER'
-    #app.config['ALLOWED_EXTENSIONS'] = {'mp3', 'wav', 'aac', 'flac'}
 
     return app
