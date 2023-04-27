@@ -103,4 +103,4 @@ def delete(id):
 
 @bp.route('/')
 def transcriber():
-    return render_template('transcriber/transcriber.html')
+    return render_template('transcriber/index.html')

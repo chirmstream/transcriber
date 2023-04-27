@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+<script src="transcriber/static/script.js"></script>
+
+{% block header %}
+    <h3>Upload audio file</h3>
+    test text
+{% endblock %}
+
+{% block content %}
+    <div class="drag-image">
+        <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+        <h6>Drag & Drop File Here</h6>
+        <span>OR</span>
+        <button>Browse File</button>
+        <input type="file" hidden>
+    </div>
+{% endblock %}
