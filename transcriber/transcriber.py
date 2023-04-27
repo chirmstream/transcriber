@@ -7,8 +7,40 @@ from transcriber.auth import login_required
 from transcriber.db import get_db
 
 bp = Blueprint('transcriber', __name__)
+ALLOWED_EXTENSIONS = {'mp3', 'wav', 'aac', 'flac'}
 
 
+@bp.route('/', methods=('GET', 'POST'))
+def transcriber():
+    return render_template('transcriber/index.html')
+
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 @bp.route('/blog')
 def index():
     db = get_db()
@@ -99,8 +131,3 @@ def delete(id):
     db.execute('DELETE FROM post WHERE id = ?', (id,))
     db.commit()
     return redirect(url_for('transcriber.index'))
-
-
-@bp.route('/')
-def transcriber():
-    return render_template('transcriber/index.html')

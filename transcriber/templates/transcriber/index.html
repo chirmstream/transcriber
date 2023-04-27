@@ -8,8 +8,8 @@
 
 {% block content %}
 <br>
-    <div>
-        <label for="formFileLg" class="form-label" style="color:white;">Upload audio file </label>
-        <input class="form-control form-control-lg" id="formFileLg" type="file">
-    </div>
+    <form method=post enctype=multipart/form-data>
+        <input type=file name=file>
+        <input type=submit value=Upload>
+    </form>
 {% endblock %}
