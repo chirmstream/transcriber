@@ -1,5 +1,5 @@
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, url_for
+    Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
 from werkzeug.exceptions import abort
 from werkzeug.utils import secure_filename
@@ -15,11 +15,13 @@ ALLOWED_EXTENSIONS = {'mp3', 'wav', 'aac', 'flac'}
 
 @bp.route('/', methods=('GET', 'POST'))
 def transcriber():
+    user_id = session.get('user_id')
     # If not logged in
-    return render_template('transcriber/index.html')
-
+    if user_id is None:
+        return render_template('transcriber/index.html')
     # Else return upload
-
+    else:
+        return render_template('transcriber/upload.html')
 
 
 
