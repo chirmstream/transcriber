@@ -2,14 +2,14 @@ html { font-family: sans-serif; background: #121212; padding: 1rem; }
 body { max-width: 960px; margin: 0 auto; background: rgb(59, 59, 59); }
 h1 { font-family: serif; color: #f8f8f8; margin: 1rem 0; }
 a { color: #f8f8f8; }
-hr { border: none; border-top: 1px solid rgb(84, 19, 128); }
+hr { border: none; border-top: 2px solid rgb(240, 225, 13); }
 nav { background: rgb(59, 59, 59); display: flex; align-items: center; padding: 0 0.5rem; }
 nav h1 { flex: auto; margin: 0; }
 nav h1 a { text-decoration: none; padding: 0.25rem 0.5rem; }
 nav ul  { display: flex; list-style: none; margin: 0; padding: 0; }
 nav ul li a, nav ul li span, header .action { display: block; padding: 0.5rem; color: rgb(233, 233, 233); }
 .content { padding: 0 1rem 1rem; }
-.content > header { border-bottom: 1px solid rgb(84, 19, 128); display: flex; align-items: flex-end; }
+.content > header { border-bottom: 5px solid rgb(84, 19, 128); display: flex; align-items: flex-end; }
 .content > header h1 { flex: auto; margin: 1rem 0 0.25rem 0; }
 .flash { margin: 1em 0; padding: 1em; background: #1aaa3e; border: 1px solid #377ba8; }
 .post > header { display: flex; align-items: flex-end; font-size: 0.85em; }
