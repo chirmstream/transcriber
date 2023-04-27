@@ -14,7 +14,7 @@ ALLOWED_EXTENSIONS = {'mp3', 'wav', 'aac', 'flac'}
 
 
 @bp.route('/', methods=('GET', 'POST'))
-def transcriber():
+def index():
     user_id = session.get('user_id')
     # If not logged in
     if user_id is None:
@@ -22,6 +22,13 @@ def transcriber():
     # Else return upload
     else:
         return render_template('transcriber/upload.html')
+
+
+@bp.route('/upload', methods=('GET', 'POST'))
+def upload():
+
+        return render_template('transcriber/transcript.html')
+
 
 
 
@@ -52,7 +59,7 @@ def allowed_file(filename):
 
 
 @bp.route('/blog')
-def index():
+def blog():
     db = get_db()
     posts = db.execute(
         'SELECT p.id, title, body, created, author_id, username'
