@@ -2,6 +2,7 @@ from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for,
 )
 from werkzeug.exceptions import abort
+from werkzeug.utils import secure_filename
 
 from transcriber.auth import login_required
 from transcriber.db import get_db
@@ -17,8 +18,24 @@ def index():
         return render_template('transcriber/index.html')
     # Else return upload
     else:
-        #files = os.listdir(app.config['UPLOAD_FOLDER'])
+        #return redirect('file/upload.html')
         return render_template('transcriber/upload.html')
+
+
+@bp.route('/upload', methods=('GET', 'POST'))
+def upload():
+    if request.method == 'POST':
+        return "/upload is POST"
+        f = request.files['file']
+        f.save(secure_filename(f.filename))
+        return "File saved successfully"
+        return redirect('transcriber/transcript.html')
+
+
+
+
+
+    return render_template('transcriber/upload.html')
 
 
 
@@ -26,6 +43,8 @@ def index():
 @bp.route('/transcript', methods=('GET', 'POST'))
 def transcript():
     return render_template('transcriber/transcript.html')
+
+
 
 def allowed_file(filename):
     return '.' in filename and \

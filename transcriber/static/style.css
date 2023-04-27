@@ -11,7 +11,7 @@ nav ul li a, nav ul li span, header .action { display: block; padding: 0.5rem; c
 .content { padding: 0 1rem 1rem; }
 .content > header { border-bottom: 5px solid rgb(84, 19, 128); display: flex; align-items: flex-end; }
 .content > header h1 { flex: auto; margin: 1rem 0 0.25rem 0; }
-.flash { margin: 1em 0; padding: 1em; background: #1aaa3e; border: 1px solid #377ba8; }
+.flash { margin: 1em 0; padding: 1em; background: #e91a1a; border: 1px solid #377ba8; }
 .post > header { display: flex; align-items: flex-end; font-size: 0.85em; }
 .post > header > div:first-of-type { flex: auto; }
 .post > header h1 { font-size: 1.5em; margin-bottom: 0; }
