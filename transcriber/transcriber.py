@@ -2,17 +2,25 @@ from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for
 )
 from werkzeug.exceptions import abort
+from werkzeug.utils import secure_filename
 
 from transcriber.auth import login_required
 from transcriber.db import get_db
 
 bp = Blueprint('transcriber', __name__)
+
+UPLOAD_FOLDER = '/instance/FILE_UPLOADS'
 ALLOWED_EXTENSIONS = {'mp3', 'wav', 'aac', 'flac'}
 
 
 @bp.route('/', methods=('GET', 'POST'))
 def transcriber():
+    # If not logged in
     return render_template('transcriber/index.html')
+
+    # Else return upload
+
+
 
 
 def allowed_file(filename):
@@ -40,7 +48,7 @@ def allowed_file(filename):
 
 
 
-    
+
 @bp.route('/blog')
 def index():
     db = get_db()
