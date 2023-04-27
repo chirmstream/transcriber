@@ -13,7 +13,7 @@ bp = Blueprint('transcriber', __name__)
 @bp.route('/', methods=('GET', 'POST'))
 def index():
     user_id = session.get('user_id')
-    # If not logged in
+    # If not logged in show home page, otherwise show upload page
     if user_id is None:
         return render_template('transcriber/index.html')
     # Else return upload
@@ -24,6 +24,12 @@ def index():
 
 @bp.route('/upload', methods=('GET', 'POST'))
 def upload():
+    user_id = session.get('user_id')
+    # If not logged in return back to home page
+    if user_id is None:
+        return render_template('transcriber/index.html')
+    print("test")
+
     if request.method == 'POST':
         return "/upload is POST"
         f = request.files['file']
