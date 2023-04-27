@@ -9,7 +9,7 @@ from transcriber.db import get_db
 bp = Blueprint('transcriber', __name__)
 
 
-@bp.route('/')
+@bp.route('/blog')
 def index():
     db = get_db()
     posts = db.execute(
@@ -101,6 +101,6 @@ def delete(id):
     return redirect(url_for('transcriber.index'))
 
 
-@bp.route('/transcriber')
+@bp.route('/')
 def transcriber():
     return render_template('transcriber/transcriber.html')
