@@ -28,12 +28,15 @@ def index():
 @bp.route('/process', methods=('GET', 'POST'))
 def process():
     if request.method == 'POST':
+        
         user_id = session.get('user_id')
 
         test = request.form.get("number")
-        data = 'data'
-        db.execute("INSERT INTO files (hashed_filename, user_id, file_data) VALUES (?, ?, ?)", test, user_id, data)
-
+        test = str(test)
+        
+        db = get_db()
+        db.execute("INSERT INTO files (transcription) VALUES (?)", test)
+        db.commit()
     return render_template('transcriber/process.html')
 
 
