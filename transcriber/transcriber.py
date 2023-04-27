@@ -9,6 +9,9 @@ from transcriber.db import get_db
 
 bp = Blueprint('transcriber', __name__)
 
+UPLOAD_FOLDER = '/instance/'
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'mp3'])
+
 
 @bp.route('/', methods=('GET', 'POST'))
 def index():
@@ -24,7 +27,17 @@ def index():
 
 @bp.route('/process', methods=('GET', 'POST'))
 def process():
+    if request.method == 'POST':
+        user_id = session.get('user_id')
+
+        test = request.form.get("number")
+        data = 'data'
+        db.execute("INSERT INTO files (hashed_filename, user_id, file_data) VALUES (?, ?, ?)", test, user_id, data)
+
     return render_template('transcriber/process.html')
+
+
+
 
 
 @bp.route('/transcript', methods=('GET', 'POST'))

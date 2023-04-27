@@ -10,9 +10,9 @@ CREATE TABLE user (
 
 CREATE TABLE files (
   id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
-  user_id INTEGER NOT NULL,
-  hashed_filename TEXT NOT NULL,
-  file_data BLOB NOT NULL,
+  user_id INTEGER,
+  hashed_filename TEXT,
+  file_data BLOB,
   transcription TEXT,
   FOREIGN KEY (user_id) REFERENCES user (id)
 );
