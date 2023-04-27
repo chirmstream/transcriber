@@ -22,28 +22,9 @@ def index():
         return render_template('transcriber/upload.html')
 
 
-@bp.route('/upload', methods=('GET', 'POST'))
-def upload():
-    user_id = session.get('user_id')
-    # If not logged in return back to home page
-    if user_id is None:
-        return render_template('transcriber/index.html')
-    print("test")
-
-    if request.method == 'POST':
-        return "/upload is POST"
-        f = request.files['file']
-        f.save(secure_filename(f.filename))
-        return "File saved successfully"
-        return redirect('transcriber/transcript.html')
-
-
-
-
-
-    return render_template('transcriber/upload.html')
-
-
+@bp.route('/process', methods=('GET', 'POST'))
+def process():
+    return render_template('transcriber/process.html')
 
 
 @bp.route('/transcript', methods=('GET', 'POST'))
