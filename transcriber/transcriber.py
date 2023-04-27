@@ -17,7 +17,7 @@ def index():
         ' FROM post p JOIN user u ON p.author_id = u.id'
         ' ORDER BY created DESC'
     ).fetchall()
-    return render_template('transcriber/index.html', posts=posts)
+    return render_template('blog/index.html', posts=posts)
 
 
 @bp.route('/create', methods=('GET', 'POST'))
@@ -43,7 +43,7 @@ def create():
             db.commit()
             return redirect(url_for('transcriber.index'))
 
-    return render_template('transcriber/create.html')
+    return render_template('blog/create.html')
 
 
 def get_post(id, check_author=True):
@@ -88,7 +88,7 @@ def update(id):
             db.commit()
             return redirect(url_for('transcriber.index'))
 
-    return render_template('transcriber/update.html', post=post)
+    return render_template('blog/update.html', post=post)
 
 
 @bp.route('/<int:id>/delete', methods=('POST',))
