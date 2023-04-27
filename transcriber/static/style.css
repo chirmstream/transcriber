@@ -7,7 +7,7 @@ nav { background: rgb(59, 59, 59); display: flex; align-items: center; padding: 
 nav h1 { flex: auto; margin: 0; }
 nav h1 a { text-decoration: none; padding: 0.25rem 0.5rem; }
 nav ul  { display: flex; list-style: none; margin: 0; padding: 0; }
-nav ul li a, nav ul li span, header .action { display: block; padding: 0.5rem; }
+nav ul li a, nav ul li span, header .action { display: block; padding: 0.5rem; color: rgb(233, 233, 233); }
 .content { padding: 0 1rem 1rem; }
 .content > header { border-bottom: 1px solid rgb(84, 19, 128); display: flex; align-items: flex-end; }
 .content > header h1 { flex: auto; margin: 1rem 0 0.25rem 0; }
@@ -18,7 +18,7 @@ nav ul li a, nav ul li span, header .action { display: block; padding: 0.5rem; }
 .post .about { color: rgb(233, 233, 233); font-style: italic; }
 .post .body { white-space: pre-line; color: rgb(233, 233, 233); }
 .content:last-child { margin-bottom: 0; }
-.content form { margin: 1em 0; display: flex; flex-direction: column; }
+.content form { margin: 1em 0; display: flex; flex-direction: column; color: rgb(218, 218, 218); }
 .content label { font-weight: bold; margin-bottom: 0.5em; }
 .content input, .content textarea { margin-bottom: 1em; background: rgb(59, 59, 59); color: #f8f8f8; }
 .content textarea { min-height: 12em; resize: vertical; }
