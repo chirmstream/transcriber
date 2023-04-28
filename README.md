@@ -84,3 +84,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 </sup>
+https://medevel.com/flask-tutorial-upload-csv-file-and-insert-rows-into-the-database/
+
+https://stackoverflow.com/questions/29277581/flask-nameerror-name-app-is-not-defined

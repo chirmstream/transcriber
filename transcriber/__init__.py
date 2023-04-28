@@ -9,12 +9,16 @@ def create_app(test_config=None):
     app.config.from_mapping(
         SECRET_KEY='dev',
         DATABASE=os.path.join(app.instance_path, 'transcriber.sqlite'),
-        UPLOAD_FOLDER = 'UPLOAD_FOLDER'
+        UPLOAD_FOLDER=os.path.config(app.instance_path['UPLOAD_FOLDER'], 'instance/files')
+        #UPLOAD_FOLDER = 'instance/files',
+        #app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     )
 
     if test_config is None:
         # load the instance config, if it exists, when not testing
-        app.config.from_pyfile('config.py', silent=True)
+        #app.config.from_pyfile('config.py', silent=True)
+        #UPLOAD_FOLDER = 'instance/files',
+        app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     else:
         # load the test config if passed in
         app.config.from_mapping(test_config)
@@ -34,5 +38,7 @@ def create_app(test_config=None):
     from . import transcriber
     app.register_blueprint(transcriber.bp)
     app.add_url_rule('/', endpoint='index')
+    #UPLOAD_FOLDER = 'instance/files'
+    #app.config['UPLOAD_FOLDER'] =  UPLOAD_FOLDER
 
     return app

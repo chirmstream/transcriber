@@ -1,16 +1,23 @@
+import os
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for,
 )
 from werkzeug.exceptions import abort
 from werkzeug.utils import secure_filename
+from flask_wtf import FlaskForm
+from wtforms import FileField
 
 from transcriber.auth import login_required
 from transcriber.db import get_db
 
 bp = Blueprint('transcriber', __name__)
 
-UPLOAD_FOLDER = '/instance/'
-ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'mp3'])
+
+
+#UPLOAD_FOLDER = 'instance/files'
+#app.config['UPLOAD_FOLDER'] =  UPLOAD_FOLDER
+#ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'mp3'])
+
 
 
 @bp.route('/', methods=('GET', 'POST'))
@@ -33,16 +40,28 @@ def process():
 
         test = request.form.get("number")
         test = str(test)
-
-        file = request.form.get("file")
-        #test = file
-
-        
         
         db = get_db()
         db.execute("INSERT INTO files (user_id, transcription) VALUES (?, ?)", (user_id, test))
         db.commit()
-    return render_template('transcriber/process.html')
+
+
+        uploaded_file = request.files['file']
+        if uploaded_file.filename != '':
+           file_path = os.path.join(app.config['UPLOAD_FOLDER'], uploaded_file.filename)
+            # set the file path
+           uploaded_file.save(file_path)
+          # save the file
+        return redirect(url_for('index'))
+
+
+
+
+        form = MyForm()
+
+
+
+    return render_template('transcriber/process.html', form=form)
 
 
 
