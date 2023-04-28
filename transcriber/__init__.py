@@ -9,21 +9,13 @@ def create_app(test_config=None):
     app.config.from_mapping(
         SECRET_KEY='dev',
         DATABASE=os.path.join(app.instance_path, 'transcriber.sqlite'),
-        
-        #UPLOAD_FOLDER=os.path.config(app.instance_path['UPLOAD_FOLDER'], 'instance/files'),
-        
-        #UPLOAD_FOLDER = os.path.join(path, 'uploads')
-        #UPLOAD_FOLDER = 'instance/files',
-        #app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
     )
 
     if test_config is None:
         # load the instance config, if it exists, when not testing
         app.config.from_pyfile('config.py', silent=True)
-        #path = app.instance_path,
-        #path = str(path)
-        #UPLOAD_FOLDER = os.path.join(path, 'uploads')
-        #UPLOAD_FOLDER = 'instance/files',
+
         UPLOAD_FOLDER=os.path.join(app.instance_path, 'uploads')
         app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     else:
@@ -36,7 +28,7 @@ def create_app(test_config=None):
     except OSError:
         pass
     
-    
+    # ensure the uploads folder exists
     if not os.path.isdir(UPLOAD_FOLDER):
         os.mkdir(UPLOAD_FOLDER)
 
@@ -50,7 +42,6 @@ def create_app(test_config=None):
     app.register_blueprint(transcriber.bp)
     app.add_url_rule('/', endpoint='index')
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-    #UPLOAD_FOLDER = 'instance/files'
-    #app.config['UPLOAD_FOLDER'] =  UPLOAD_FOLDER
+
 
     return app
