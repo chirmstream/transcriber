@@ -33,9 +33,14 @@ def process():
 
         test = request.form.get("number")
         test = str(test)
+
+        file = request.form.get("file")
+        #test = file
+
+        
         
         db = get_db()
-        db.execute("INSERT INTO files (transcription) VALUES (?)", test)
+        db.execute("INSERT INTO files (user_id, transcription) VALUES (?, ?)", (user_id, test))
         db.commit()
     return render_template('transcriber/process.html')
 

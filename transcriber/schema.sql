@@ -11,7 +11,8 @@ CREATE TABLE user (
 CREATE TABLE files (
   id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
   user_id INTEGER,
-  hashed_filename TEXT,
+  created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+  file_name TEXT,
   file_data BLOB,
   transcription TEXT,
   FOREIGN KEY (user_id) REFERENCES user (id)
