@@ -14,7 +14,7 @@ bp = Blueprint('transcriber', __name__)
 
 
 
-#UPLOAD_FOLDER = 'instance/files'
+UPLOAD_FOLDER = 'instance/files'
 #app.config['UPLOAD_FOLDER'] =  UPLOAD_FOLDER
 #ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'mp3'])
 
@@ -46,13 +46,14 @@ def process():
         db.commit()
 
 
-        uploaded_file = request.files['file']
-        if uploaded_file.filename != '':
-           file_path = os.path.join(app.config['UPLOAD_FOLDER'], uploaded_file.filename)
+        file = request.files['file']
+        file.save(os.path.join('UPLOAD_FOLDER', file))
+        #if uploaded_file.filename != '':
+           #file_path = os.path.join(app.config['UPLOAD_FOLDER'], uploaded_file.filename)
             # set the file path
-           uploaded_file.save(file_path)
+           #uploaded_file.save(file_path)
           # save the file
-        return redirect(url_for('index'))
+        #return redirect(url_for('index'))
 
 
 
