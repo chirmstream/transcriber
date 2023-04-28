@@ -47,7 +47,9 @@ def process():
 
 
         file = request.files['file']
-        file.save(os.path.join('UPLOAD_FOLDER', file))
+        #cwd = os.path.cwd()
+
+        file.save(os.path.join('/mnt/c/Users/dbarney/code/transcriber', file.filename))
         #if uploaded_file.filename != '':
            #file_path = os.path.join(app.config['UPLOAD_FOLDER'], uploaded_file.filename)
             # set the file path
@@ -55,14 +57,14 @@ def process():
           # save the file
         #return redirect(url_for('index'))
 
+        #db.execute("INSERT INTO files (user_id, file_data) VALUES (?, ?)", (user_id, file))
+
+
+        
 
 
 
-        form = MyForm()
-
-
-
-    return render_template('transcriber/process.html', form=form)
+    return render_template('transcriber/process.html',)
 
 
 
@@ -77,6 +79,13 @@ def transcript():
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+# Convert images or files data to binary format
+def convert_data(file_name):
+    with open(file_name, 'rb') as file:
+        binary_data = file.read()
+    return binary_data
 
     
 
