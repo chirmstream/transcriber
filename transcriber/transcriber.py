@@ -42,20 +42,21 @@ def process():
         db.commit()
 
 
-
+        # Get file from html form
         file = request.files['file']
-        # Check for valid file extension
-        if file not in request.files:
+        # Check for valid file
+        if file.filename == '':
             return redirect('/error')
-
-        file.save(os.path.join(current_app.instance_path, 'uploads', file.filename))
+        # Check for allowed file
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            # Save file to disk
+            file.save(os.path.join(current_app.instance_path, 'uploads', file.filename))
+        else:
+            return redirect('/error')
 
 
         #db.execute("INSERT INTO files (user_id, file_data) VALUES (?, ?)", (user_id, file))
-
-
-        
-
 
 
     return render_template('transcriber/process.html',)
