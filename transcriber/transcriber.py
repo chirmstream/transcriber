@@ -12,10 +12,6 @@ from transcriber.db import get_db
 
 bp = Blueprint('transcriber', __name__)
 
-
-
-UPLOAD_FOLDER = 'instance/files'
-#app.config['UPLOAD_FOLDER'] =  UPLOAD_FOLDER
 #ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'mp3'])
 
 
