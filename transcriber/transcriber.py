@@ -75,7 +75,6 @@ def error():
     return render_template('transcriber/error.html')
 
 
-
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
