@@ -1,6 +1,6 @@
 import os
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, session, url_for,
+    Blueprint, flash, g, redirect, render_template, request, session, url_for, current_app
 )
 from werkzeug.exceptions import abort
 from werkzeug.utils import secure_filename
@@ -43,15 +43,8 @@ def process():
 
 
         file = request.files['file']
-        #cwd = os.path.cwd()
+        file.save(os.path.join(current_app.instance_path, 'uploads', file.filename))
 
-        file.save(os.path.join('/mnt/c/Users/dbarney/code/transcriber', file.filename))
-        #if uploaded_file.filename != '':
-           #file_path = os.path.join(app.config['UPLOAD_FOLDER'], uploaded_file.filename)
-            # set the file path
-           #uploaded_file.save(file_path)
-          # save the file
-        #return redirect(url_for('index'))
 
         #db.execute("INSERT INTO files (user_id, file_data) VALUES (?, ?)", (user_id, file))
 
