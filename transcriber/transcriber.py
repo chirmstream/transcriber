@@ -12,7 +12,7 @@ from transcriber.db import get_db
 
 bp = Blueprint('transcriber', __name__)
 
-#ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'mp3'])
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 
 
@@ -42,7 +42,12 @@ def process():
         db.commit()
 
 
+
         file = request.files['file']
+        # Check for valid file extension
+        if file not in request.files:
+            return redirect('/error')
+
         file.save(os.path.join(current_app.instance_path, 'uploads', file.filename))
 
 
@@ -62,6 +67,11 @@ def process():
 @bp.route('/transcript', methods=('GET', 'POST'))
 def transcript():
     return render_template('transcriber/transcript.html')
+
+
+@bp.route('/error')
+def error():
+    return render_template('transcriber/error.html')
 
 
 
