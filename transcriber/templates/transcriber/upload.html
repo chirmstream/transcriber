@@ -8,11 +8,6 @@
 
 {% block content %}
 <br>
-    <form action="/process" method="post">
-        <input type="text" name="number">
-        <label>"enter number"</label>
-    </form>
-
     <form action="/process" method=post enctype=multipart/form-data>
         <input type=file name=file required>
         <input type=submit value=Upload>

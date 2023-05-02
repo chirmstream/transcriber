@@ -12,7 +12,7 @@ from transcriber.db import get_db
 
 bp = Blueprint('transcriber', __name__)
 
-ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+ALLOWED_EXTENSIONS = {'mp3', 'flac', 'wav', 'pdf', 'zip'}
 
 
 
@@ -31,17 +31,6 @@ def index():
 @bp.route('/process', methods=('GET', 'POST'))
 def process():
     if request.method == 'POST':
-        
-        user_id = session.get('user_id')
-
-        test = request.form.get("number")
-        test = str(test)
-        
-        db = get_db()
-        db.execute("INSERT INTO files (user_id, transcription) VALUES (?, ?)", (user_id, test))
-        db.commit()
-
-
         # Get file from html form
         file = request.files['file']
         # Check for valid file
@@ -52,11 +41,16 @@ def process():
             filename = secure_filename(file.filename)
             # Save file to disk
             file.save(os.path.join(current_app.instance_path, 'uploads', file.filename))
+            # Record to database
+            user_id = session.get('user_id')
+            db = get_db()
+            db.execute("INSERT INTO files (user_id, file_name) VALUES (?, ?)", (user_id, file.filename))
+            db.commit()
         else:
             return redirect('/error')
 
 
-        #db.execute("INSERT INTO files (user_id, file_data) VALUES (?, ?)", (user_id, file))
+        
 
 
     return render_template('transcriber/process.html',)
