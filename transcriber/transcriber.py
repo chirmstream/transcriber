@@ -6,6 +6,7 @@ from werkzeug.exceptions import abort
 from werkzeug.utils import secure_filename
 from flask_wtf import FlaskForm
 from wtforms import FileField
+from datetime import datetime
 
 from transcriber.auth import login_required
 from transcriber.db import get_db
@@ -40,9 +41,11 @@ def process():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             # Save file to disk
+            user_id = session.get('user_id')
+            date = datetime.now()
+            file.filename = str(user_id) + '_' + str(date) + file.filename
             file.save(os.path.join(current_app.instance_path, 'uploads', file.filename))
             # Record to database
-            user_id = session.get('user_id')
             db = get_db()
             db.execute("INSERT INTO files (user_id, file_name) VALUES (?, ?)", (user_id, file.filename))
             db.commit()
