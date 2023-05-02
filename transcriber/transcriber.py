@@ -1,4 +1,5 @@
 import os
+import whisper
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for, current_app
 )
@@ -14,7 +15,6 @@ from transcriber.db import get_db
 bp = Blueprint('transcriber', __name__)
 
 ALLOWED_EXTENSIONS = {'mp3', 'flac', 'wav', 'pdf', 'zip'}
-
 
 
 @bp.route('/', methods=('GET', 'POST'))
@@ -45,10 +45,18 @@ def process():
             date = datetime.now()
             file.filename = str(user_id) + '_' + str(date) + file.filename
             file.save(os.path.join(current_app.instance_path, 'uploads', file.filename))
+
+            # Perform transcription
+            model = whisper.load_model("base")
+            audio = whisper.load_audio("OSR_us_000_0010_8k.wav")
+            result = model.transcribe(audio)
+            transcription = result["text"]
+
             # Record to database
             db = get_db()
-            db.execute("INSERT INTO files (user_id, file_name) VALUES (?, ?)", (user_id, file.filename))
+            db.execute("INSERT INTO files (user_id, file_name, transcription) VALUES (?, ?, ?)", (user_id, file.filename), transcription)
             db.commit()
+
         else:
             return redirect('/error')
 

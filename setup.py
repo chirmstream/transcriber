@@ -6,6 +6,6 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
-        'flask', 'flask-uploads', 'flask_wtf', 'WTForms', 'openai-whisper'
+        'flask', 'flask-uploads', 'flask_wtf', 'WTForms', 'openai-whisper', 'whisper'
     ],
 )
