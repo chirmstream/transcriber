@@ -14,7 +14,7 @@ from transcriber.db import get_db
 
 bp = Blueprint('transcriber', __name__)
 
-ALLOWED_EXTENSIONS = {'mp3', 'flac', 'wav', 'pdf', 'zip'}
+ALLOWED_EXTENSIONS = {'mp3', 'wav', 'aac', 'flac'}
 
 
 @bp.route('/', methods=('GET', 'POST'))
