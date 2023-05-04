@@ -29,8 +29,8 @@ def index():
         return render_template('transcriber/upload.html')
 
 
-@bp.route('/process', methods=('GET', 'POST'))
-def process():
+@bp.route('/transcript', methods=('GET', 'POST'))
+def transcript():
     if request.method == 'POST':
         # Get file from html form
         file = request.files['file']
@@ -40,6 +40,7 @@ def process():
         # Check for allowed file
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
+
             # Save file to disk
             user_id = session.get('user_id')
             date = datetime.now()
@@ -56,23 +57,14 @@ def process():
             db = get_db()
             db.execute("INSERT INTO files (user_id, file_name, transcription) VALUES (?, ?, ?)", (user_id, file.filename, transcription))
             db.commit()
-
         else:
             return redirect('/error')
+    return render_template('transcriber/transcript.html', transcription=transcription)
 
 
-        
-
-
-    return render_template('transcriber/process.html',)
-
-
-
-
-
-@bp.route('/transcript', methods=('GET', 'POST'))
-def transcript():
-    return render_template('transcriber/transcript.html')
+@bp.route('/process', methods=('GET', 'POST'))
+def process():
+    return render_template('transcriber/process.html')
 
 
 @bp.route('/error')
