@@ -69,6 +69,11 @@ def history():
     return render_template('transcriber/history.html')
 
 
+@bp.route('/settings', methods=('GET', 'POST'))
+def settings():
+    return render_template('transcriber/settings.html')
+
+
 @bp.route('/process', methods=('GET', 'POST'))
 def process():
     return render_template('transcriber/process.html')
