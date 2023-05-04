@@ -44,6 +44,8 @@ def transcript():
             # Save file to disk
             user_id = session.get('user_id')
             date = datetime.now()
+            # Cleanses the filename before saving to disk
+            file.filename = secure_filename(file.filename)
             file.filename = str(user_id) + '_' + str(date) + file.filename
             file.save(os.path.join(current_app.instance_path, 'uploads', file.filename))
 
@@ -75,10 +77,3 @@ def error():
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
-
-# Convert images or files data to binary format
-def convert_data(file_name):
-    with open(file_name, 'rb') as file:
-        binary_data = file.read()
-    return binary_data
