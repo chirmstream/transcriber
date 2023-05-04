@@ -1,5 +1,6 @@
 import os
-#import whisper
+import whisper
+import ffmpeg
 
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for, current_app
@@ -46,11 +47,11 @@ def process():
             file.save(os.path.join(current_app.instance_path, 'uploads', file.filename))
 
             # Perform transcription
-            #model = whisper.load_model("base")
-            #audio = whisper.load_audio("OSR_us_000_0010_8k.wav")
-            #result = model.transcribe(audio)
-            #transcription = result["text"]
-            transcription = "this is a transcript"
+            model = whisper.load_model("base")
+            audio = whisper.load_audio("OSR_us_000_0010_8k.wav")
+            result = model.transcribe(audio)
+            transcription = result["text"]
+            #transcription = "this is a transcript"
 
             # Record to database
             db = get_db()

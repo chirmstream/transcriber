@@ -11,7 +11,8 @@ Transcriber is a web application that allows a user to upload an audio clip, and
 ## Requirements
 ---
 - Flask framework
-- sqlite3 database?
+- openai-whisper
+- ffmpeg-python
 
 ## Installation Guide
 ---
@@ -28,6 +29,18 @@ Activate the Python virtual enviroment
 Install Transcriber project using pip
 
     pip install -e .
+
+Install openai-whisper
+
+    pip install -U openai-whisper
+
+Install ffmpeg (ubuntu)
+
+    sudo apt install ffmpeg
+
+Install ffmpeg-python
+
+    pip install ffmpeg-python
 
 Initiate the project database
 
