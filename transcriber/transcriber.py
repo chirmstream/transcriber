@@ -64,6 +64,11 @@ def transcript():
     return render_template('transcriber/transcript.html', transcription=transcription)
 
 
+@bp.route('/history')
+def history():
+    return render_template('transcriber/history.html')
+
+
 @bp.route('/process', methods=('GET', 'POST'))
 def process():
     return render_template('transcriber/process.html')
