@@ -7,7 +7,7 @@
   <ul>
     {% if g.user %}
       <li><span>{{ g.user['username'] }}
-      <li><span>History</span></li>
+      <li><span><a href="{{ url_for('transcriber.history') }}">History</a></span></li>
       </span>
       <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
     {% else %}
