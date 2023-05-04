@@ -48,10 +48,9 @@ def process():
 
             # Perform transcription
             model = whisper.load_model("base")
-            audio = whisper.load_audio("OSR_us_000_0010_8k.wav")
+            audio = whisper.load_audio(current_app.instance_path + '/uploads/' + file.filename)
             result = model.transcribe(audio)
             transcription = result["text"]
-            #transcription = "this is a transcript"
 
             # Record to database
             db = get_db()
