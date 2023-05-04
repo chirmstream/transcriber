@@ -4,14 +4,13 @@ Transcriber is a web application that allows a user to upload an audio clip, and
 ## Features
 ---
 - Transcribe mp3, wav, aac, flac audio files
-- Return copy-pastable text
-- Highlight text during audio playback
-- Downloadable transcription
+- Transcribe multiple languages (only english tested)
 
 ## Requirements
 ---
 - Flask framework
 - openai-whisper
+- ffmpeg
 - ffmpeg-python
 
 ## Installation Guide
@@ -61,6 +60,11 @@ If the default port 5000 is in use run:
 
     flask --app transcriber run --debug -p <port>
 
+If you run into an issue with torch not being found try reinstalling via pip
+
+    pip uninstall torch
+    pip install torch
+
 Flask Extensions to use:
 - Flask-SQLAlchemy
 - Flask-WTF?
@@ -97,6 +101,3 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 </sup>
-https://medevel.com/flask-tutorial-upload-csv-file-and-insert-rows-into-the-database/
-
-https://stackoverflow.com/questions/29277581/flask-nameerror-name-app-is-not-defined
