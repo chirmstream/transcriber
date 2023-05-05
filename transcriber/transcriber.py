@@ -67,9 +67,9 @@ def transcript():
 @bp.route('/history')
 def history():
     user_id = session.get('user_id')
+    user_id = str(user_id)
     db = get_db()
-    #record = db.execute("SELECT id, created, transcription FROM files WHERE user_id = ?", user_id)
-    record = db.execute("SELECT * FROM files")
+    record = db.execute("SELECT id, created, transcription FROM files WHERE user_id = ?", user_id)
     db.commit
     return render_template('transcriber/history.html', record=record)
 
