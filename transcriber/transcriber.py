@@ -7,6 +7,7 @@ from flask import (
 )
 from werkzeug.exceptions import abort
 from werkzeug.utils import secure_filename
+from werkzeug.security import check_password_hash, generate_password_hash
 from datetime import datetime
 
 from transcriber.auth import login_required
@@ -76,6 +77,29 @@ def history():
 
 @bp.route('/settings', methods=('GET', 'POST'))
 def settings():
+    # If not logged in show home page, otherwise show upload page
+    user_id = session.get('user_id')
+    if user_id is None:
+        return render_template('transcriber/index.html')
+
+    if request.method == 'POST':
+        password = request.form['password']
+        password_verify = request.form['password-verify']
+        
+        # Check for missing fields
+        if not password:
+            return redirect('/gerror')
+        elif not password_verify:
+            return redirect('/gerror')
+
+        user_id = str(user_id)
+        # Get username
+        db = get_db()
+        username = db.execute("SELECT username FROM user WHERE user_id = ?", user_id)
+        # Update database with new password_hash
+        db.execute("UPDATE user SET password = ? WHERE id = ?", generate_password_hash(password), user_id),
+        db.commit()
+
     return render_template('transcriber/settings.html')
 
 
@@ -87,6 +111,11 @@ def process():
 @bp.route('/error')
 def error():
     return render_template('transcriber/error.html')
+
+
+@bp.route('/gerror')
+def gerror():
+    return render_template('transcriber/general_error.html')
 
 
 def allowed_file(filename):

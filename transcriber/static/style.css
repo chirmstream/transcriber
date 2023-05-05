@@ -35,3 +35,15 @@ tr:nth-child(even) {
 th {
     color:rgb(219, 219, 219)
 }
+
+button,
+input {
+  display: block;
+  margin-bottom: 10px;
+}
+
+#alert {
+  display: none;
+  color: red;
+  margin-bottom: 10px;
+}
