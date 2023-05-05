@@ -66,7 +66,12 @@ def transcript():
 
 @bp.route('/history')
 def history():
-    return render_template('transcriber/history.html')
+    user_id = session.get('user_id')
+    db = get_db()
+    #record = db.execute("SELECT id, created, transcription FROM files WHERE user_id = ?", user_id)
+    record = db.execute("SELECT * FROM files")
+    db.commit
+    return render_template('transcriber/history.html', record=record)
 
 
 @bp.route('/settings', methods=('GET', 'POST'))
@@ -74,7 +79,7 @@ def settings():
     return render_template('transcriber/settings.html')
 
 
-@bp.route('/process', methods=('GET', 'POST'))
+@bp.route('/process')
 def process():
     return render_template('transcriber/process.html')
 
