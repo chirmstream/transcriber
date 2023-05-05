@@ -93,11 +93,10 @@ def settings():
             return redirect('/gerror')
 
         user_id = str(user_id)
-        # Get username
         db = get_db()
-        username = db.execute("SELECT username FROM user WHERE user_id = ?", user_id)
+        new_pass = generate_password_hash(password)
         # Update database with new password_hash
-        db.execute("UPDATE user SET password = ? WHERE id = ?", generate_password_hash(password), user_id),
+        db.execute("UPDATE user SET password = '?' WHERE id = ?", new_pass, user_id),
         db.commit()
 
     return render_template('transcriber/settings.html')
