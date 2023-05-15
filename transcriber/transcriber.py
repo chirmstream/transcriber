@@ -96,10 +96,9 @@ def settings():
         if password != password_verify:
             return redirect('/gerror')
 
-        user_id = str(user_id)
-        db = get_db()
         # Update database with new password_hash
-        db.execute("UPDATE user SET password = ? WHERE id = ?", generate_password_hash(password), user_id),
+        db = get_db()
+        db.execute("UPDATE user SET password = ? WHERE id = ?", (generate_password_hash(password), user_id))
         db.commit()
         return redirect('/')
 
