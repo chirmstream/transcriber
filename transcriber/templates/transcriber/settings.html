@@ -6,16 +6,16 @@
 {% block content %}
 <h4 style="color:white"><center>Settings</center></h4>
 
-<form id="password-reset-form" method="post" action="/">
+<form id="password-reset-form" method="post">
     <div id="alert"></div>
   
-    <label for="password">Password</label>
-    <input type="password" id="password" />
+    <label for="password">New Password</label>
+    <input type="password" name="password" id="password" required/>
   
     <label for="password-verify">Re-type password</label>
-    <input type="password" id="password-verify" />
+    <input type="password" name="password-verify" id="password-verify" required/>
   
-    <button type="submit">Reset password</button>
+    <button type="submit">Confirm new password</button>
   </form>
 
 {% endblock %}
