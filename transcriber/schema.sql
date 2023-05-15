@@ -12,7 +12,6 @@ CREATE TABLE files (
   user_id INTEGER,
   created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   file_name TEXT,
-  file_ LONGBLOB,
   transcription TEXT,
   FOREIGN KEY (user_id) REFERENCES user (id)
 );
