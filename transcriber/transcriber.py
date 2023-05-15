@@ -77,7 +77,7 @@ def history():
 
 @bp.route('/settings', methods=('GET', 'POST'))
 def settings():
-    # If not logged in show home page, otherwise show upload page
+    # If not logged in show home page, otherwise show settings page
     user_id = session.get('user_id')
     if user_id is None:
         return render_template('transcriber/index.html')
@@ -92,12 +92,16 @@ def settings():
         elif not password_verify:
             return redirect('/gerror')
 
+        # Check for matching passwords
+        if password != password_verify:
+            return redirect('/gerror')
+
         user_id = str(user_id)
         db = get_db()
-        new_pass = generate_password_hash(password)
         # Update database with new password_hash
-        db.execute("UPDATE user SET password = '?' WHERE id = ?", new_pass, user_id),
+        db.execute("UPDATE user SET password = ? WHERE id = ?", generate_password_hash(password), user_id),
         db.commit()
+        return redirect('/')
 
     return render_template('transcriber/settings.html')
 
