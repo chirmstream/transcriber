@@ -83,24 +83,30 @@ def settings():
         return render_template('transcriber/index.html')
 
     if request.method == 'POST':
-        password = request.form['password']
-        password_verify = request.form['password-verify']
-        
-        # Check for missing fields
-        if not password:
-            return redirect('/gerror')
-        elif not password_verify:
-            return redirect('/gerror')
+        if request.form['form_id'] == '1': 
+            password = request.form['password']
+            password_verify = request.form['password-verify']
+            
+            # Check for missing fields
+            if not password:
+                return redirect('/gerror')
+            elif not password_verify:
+                return redirect('/gerror')
 
-        # Check for matching passwords
-        if password != password_verify:
-            return redirect('/gerror')
+            # Check for matching passwords
+            if password != password_verify:
+                return redirect('/gerror')
 
-        # Update database with new password_hash
-        db = get_db()
-        db.execute("UPDATE user SET password = ? WHERE id = ?", (generate_password_hash(password), user_id))
-        db.commit()
-        return redirect('/')
+            # Update database with new password_hash
+            db = get_db()
+            db.execute("UPDATE user SET password = ? WHERE id = ?", (generate_password_hash(password), user_id))
+            db.commit()
+            return redirect('/')
+
+        else:
+            # Check for checked box
+            if request.form['confirm-delete'] == True:
+                return render_template('transcriber/process.html')
 
     return render_template('transcriber/settings.html')
 
