@@ -19,10 +19,10 @@
     <button type="submit">Confirm new password</button>
 </form>
 
-<form id="account-delete-form" method="post" value="delete-submit">
+<form id="account-delete-form" method="post">
   <input value = "2" type="hidden" name="form_id" id="form_id">
   <div class="form-check form-check-inline">
-    <input type="checkbox" name="confirm-delete" value="true"/>
+    <input type="checkbox" name="confirm-delete" required/>
     <label for="confirm-delete">Yes I am sure I want to do this?</label>
   </div>
   <div>
