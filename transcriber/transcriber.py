@@ -84,7 +84,7 @@ def settings():
 
     if request.method == 'POST':
         form_id = request.form['form_id']
-        if form_id == '1': 
+        if form_id == '1':
             password = request.form['password']
             password_verify = request.form['password-verify']
             
@@ -106,6 +106,7 @@ def settings():
 
         if form_id == '2':
             db = get_db()
+            user_id = str(user_id)
             db.execute("DELETE FROM user WHERE id = ?", (user_id))
             db.commit()
             # Check for checked box
