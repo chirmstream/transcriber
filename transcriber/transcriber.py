@@ -106,6 +106,9 @@ def settings():
 
         if form_id == '2':
             # Validate form
+            checkbox = request.form.getlist('checkbox')
+            if checkbox != 'true':
+                return redirect('/gerror')
 
             # Delete account
             db = get_db()
