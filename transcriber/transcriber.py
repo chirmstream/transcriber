@@ -105,13 +105,16 @@ def settings():
             return redirect('/')
 
         if form_id == '2':
+            # Validate form
+
+            # Delete account
             db = get_db()
             user_id = str(user_id)
             db.execute("DELETE FROM user WHERE id = ?", (user_id))
             db.commit()
-            # Check for checked box
-            if request.form['confirm-delete'] == True:
-                return render_template('transcriber/process.html')
+            # Clear session and return to index
+            session.clear()
+            return redirect(url_for('index'))
 
     return render_template('transcriber/settings.html')
 
