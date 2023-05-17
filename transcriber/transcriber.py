@@ -83,7 +83,8 @@ def settings():
         return render_template('transcriber/index.html')
 
     if request.method == 'POST':
-        if request.form['form_id'] == '1': 
+        form_id = request.form['form_id']
+        if form_id == '1': 
             password = request.form['password']
             password_verify = request.form['password-verify']
             
@@ -103,7 +104,10 @@ def settings():
             db.commit()
             return redirect('/')
 
-        else:
+        if form_id == '2':
+            db = get_db()
+            db.execute("DELETE FROM user WHERE id = ?", (user_id))
+            db.commit()
             # Check for checked box
             if request.form['confirm-delete'] == True:
                 return render_template('transcriber/process.html')

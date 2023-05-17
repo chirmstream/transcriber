@@ -7,7 +7,7 @@
 <h4 style="color:white"><center>Settings</center></h4>
 
 <form id="password-reset-form" method="post">
-  <input value = "1" type="hidden" name="form_id">
+  <input value = "1" type="hidden" name="form_id" id="form_id">
     <div id="alert"></div>
   
     <label for="password">New Password</label>
@@ -21,12 +21,12 @@
 
 <form id="account-delete-form" value="delete-submit">
 
-  <input value = "2" type="hidden" name="form_id">
+  <input value = "2" type="hidden" name="form_id" id="form_id">
   <div class="form-check form-check-inline">
     <input type="checkbox" id="confirm-delete"/>
     <label for="confirm-delete">Yes I am sure I want to do this?</label>
   </div>
-  
+
   <div>
     <button type="submit">Delete my account</button>
   </div>
