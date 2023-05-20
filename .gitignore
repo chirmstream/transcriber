@@ -11,6 +11,6 @@ htmlcov/
 
 dist/
 build/
-flaskr.egg-info/
+transcriber.egg-info/
 
 .DS_Store
