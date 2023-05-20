@@ -65,6 +65,14 @@ If you run into an issue with torch not being found try reinstalling via pip
     pip uninstall torch
     pip install torch
 
+If you are on MacOS you will need openssl 1.1
+
+    brew install openssl@1.1
+
+If that doesn't work you can try:
+
+    python3 -m pip install urllib3==1.26.6
+
 ### License
 ---
 Transcriber's code is released under the MIT license.  See [LICENSE](https://github.com/chirmstream/transcriber/blob/main/LICENSE) for further details.
