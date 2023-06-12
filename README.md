@@ -24,8 +24,14 @@ Openai/whisper is what is being used under the hood to perform the transcription
 - ffmpeg
 - ffmpeg-python
 
+## About
+---
+Transcriber is built using the Flask framework with a sqlite3 database.  Flask was chosen due to its simplicity, scalability, and I was already familiar with it.  sqlite3 was chosen for similar reasons, it is simple, quick, and I was already familiar with it.  It should not be too difficult to use a more production oriented database such as mariadb if needed, but at this time it is not supported.
 
-### Installation Guide
+Openai/whisper is what is being used under the hood to perform the transcription.  Transcriber is currently set to use the 'base' model, but it would not be hard to modify the code to use a different model if needed.  You can read more about openai/whisper [here](https://github.com/openai/whisper).
+
+## Installation Guide
+---
 Create a virtual Python enviroment (Linux/MacOS command):
 
     mkdir transcriber
