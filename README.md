@@ -1,6 +1,8 @@
 # Transcriber
-#### Video Demo:  <https://youtu.be/dcOmge7oiXw>
-#### Description: Transcriber is a web application that allows a user to upload an audio clip, and receive a transcription of what was spoken.
+
+## Description
+
+Transcriber is a web application that allows a user to upload an audio clip, and receive a transcription of what was spoken.
 
 
 ## About
